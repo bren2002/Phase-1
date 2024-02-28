@@ -10,63 +10,133 @@ OrderedArrayList::OrderedArrayList() {
     currentSize = 0;
 }
 
-OrderedArrayList::OrderedArrayList(int initialCapacity) {
+UnorderedArrayList::UnorderedArrayList(int initialCapacity) {
     // Initialize the array with the specific initial capacity
     array = new int[initialCapacity];
     capacity = initialCapacity;
     currentSize = 0;
 }
 
-bool OrderedArrayList::add(int data) {
-    // Implement the logic to add data to the ordered array
+bool UnorderedArrayList::add(int data) {
+    // Put in the logic to add data to the unordered array
     // Return true if correct, false otherwise
+    if (currentSize < capacity) {
+        array[currentSize++] = data;
+        return true;
+    } else {
+        // Handle the case when the array is full
+        return false;
+    }
 }
 
-bool OrderedArrayList::add(int index, int data) {
-    // Implement the logic to add data at the specific index
+bool UnorderedArrayList::add(int index, int data) {
+    // Put in the logic to add data at the specific index
     // Return true if correct, false otherwise
+    if (index >= 0 && index <= currentSize && currentSize < capacity) {
+        // Add the logic to add data at the specified index
+        // Update the array and currentSize
+        for (int i = currentSize; i > index; --i) {
+            array[i] = array[i - 1];
+        }
+        array[index] = data;
+        ++currentSize;
+        return true;
+    } else {
+        // Handle the case when the index is out of bounds or the array is full
+        return false;
+    }
 }
-
 void OrderedArrayList::clear() {
-    // Put in the logic to clear the list
+    // Implement the logic to clear the list
+    currentSize = 0;
 }
 
 bool OrderedArrayList::contains(int data) {
     // Implement the logic to check if the list contains the specified data
-    // Return true if found, false otherwise
+    // This can be done more efficiently with binary search, but the provided code uses linear search for simplicity
+    for (int i = 0; i < currentSize; ++i) {
+        if (array[i] == data) {
+            return true;
+        } else if (array[i] > data) {
+            break; // As the array is sorted, if the current element is greater, data won't be found
+        }
+    }
+    return false;
 }
 
 int OrderedArrayList::get(int index) {
-    // Put in the logic to get the element at the specified index
-    // Return the element if index is valid, otherwise 
+    // Implement the logic to get the element at the specified index
+    if (index >= 0 && index < currentSize) {
+        return array[index];
+    } else {
+        // Handle the case when the index is out of bounds
+        throw std::out_of_range("Index out of bounds");
+    }
 }
 
 int OrderedArrayList::remove(int index) {
-    // Put in the logic to remove the element at the specified index
-    // Return the removed element if index is correct, otherwise 
+    // Implement the logic to remove the element at the specified index
+    if (index >= 0 && index < currentSize) {
+        int removedData = array[index];
+        for (int i = index; i < currentSize - 1; ++i) {
+            array[i] = array[i + 1];
+        }
+        --currentSize;
+        return removedData;
+    } else {
+        // Handle the case when the index is out of bounds
+        throw std::out_of_range("Index out of bounds");
+    }
 }
 
 bool OrderedArrayList::removeAll(int data) {
-    // Put in the logic to remove all times the specified data
-    // Return true if at least one time is removed, false otherwise
+    // Implement the logic to remove all occurrences of the specified data
+    bool dataRemoved = false;
+    for (int i = 0; i < currentSize; ++i) {
+        if (array[i] == data) {
+            for (int j = i; j < currentSize - 1; ++j) {
+                array[j] = array[j + 1];
+            }
+            --currentSize;
+            dataRemoved = true;
+            --i; // Check the same index again in case of consecutive occurrences
+        } else if (array[i] > data) {
+            break; // As the array is sorted, if the current element is greater, data won't be found
+        }
+    }
+    return dataRemoved;
 }
 
 int OrderedArrayList::indexOf(int data) {
-    // Put in the logic to find the index of the first time of the specified data
-    // Return the index if found, otherwise return -1
+    // Implement the logic to find the index of the first occurrence of the specified data
+    // This can be done more efficiently with binary search, but the provided code uses linear search for simplicity
+    for (int i = 0; i < currentSize; ++i) {
+        if (array[i] == data) {
+            return i;
+        } else if (array[i] > data) {
+            break; // As the array is sorted, if the current element is greater, data won't be found
+        }
+    }
+    return -1; // Return -1 if data is not found
 }
 
 bool OrderedArrayList::isEmpty() {
-    // Put in the logic to check if the list is empty
-    // Return true if empty, false otherwise
+    // Implement the logic to check if the list is empty
+    return currentSize == 0;
 }
 
 int OrderedArrayList::size() {
-    // Put in the logic to get the size of the list
-    // Return the current size
+    // Implement the logic to get the size of the list
+    return currentSize;
 }
 
 void OrderedArrayList::trimToSize() {
-    // Put in the logic to trim the capacity of the list to its current size
-    // If needed resize the array to match the current size
+    // Implement the logic to trim the capacity of the list to its current size
+    int* newArray = new int[currentSize];
+    for (int i = 0; i < currentSize; ++i) {
+        newArray[i] = array[i];
+    }
+    delete[] array;
+    array = newArray;
+    capacity = currentSize;
 }
