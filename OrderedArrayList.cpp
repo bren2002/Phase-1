@@ -10,44 +10,34 @@ OrderedArrayList::OrderedArrayList() {
     currentSize = 0;
 }
 
-UnorderedArrayList::UnorderedArrayList(int initialCapacity) {
+OrderedArrayList::OrderedArrayList(int initialCapacity) {
     // Initialize the array with the specific initial capacity
     array = new int[initialCapacity];
     capacity = initialCapacity;
     currentSize = 0;
 }
 
-bool UnorderedArrayList::add(int data) {
-    // Put in the logic to add data to the unordered array
+bool OrderedArrayList::add(int data) {
+    // Implement the logic to add data to the ordered array
     // Return true if correct, false otherwise
-    if (currentSize < capacity) {
-        array[currentSize++] = data;
+    if (currentSize < capacity) {        
         return true;
     } else {
-        // Handle the case when the array is full
         return false;
     }
 }
 
-bool UnorderedArrayList::add(int index, int data) {
-    // Put in the logic to add data at the specific index
+bool OrderedArrayList::add(int index, int data) {
+    // Implement the logic to add data at the specific index
     // Return true if correct, false otherwise
     if (index >= 0 && index <= currentSize && currentSize < capacity) {
-        // Add the logic to add data at the specified index
-        // Update the array and currentSize
-        for (int i = currentSize; i > index; --i) {
-            array[i] = array[i - 1];
-        }
-        array[index] = data;
-        ++currentSize;
         return true;
     } else {
-        // Handle the case when the index is out of bounds or the array is full
         return false;
     }
 }
+
 void OrderedArrayList::clear() {
-    // Implement the logic to clear the list
     currentSize = 0;
 }
 
@@ -100,7 +90,7 @@ bool OrderedArrayList::removeAll(int data) {
             dataRemoved = true;
             --i; // Check the same index again in case of consecutive occurrences
         } else if (array[i] > data) {
-            break; // As the array is sorted, if the current element is greater, data won't be found
+            break; 
         }
     }
     return dataRemoved;
@@ -108,7 +98,6 @@ bool OrderedArrayList::removeAll(int data) {
 
 int OrderedArrayList::indexOf(int data) {
     // Implement the logic to find the index of the first occurrence of the specified data
-
     for (int i = 0; i < currentSize; ++i) {
         if (array[i] == data) {
             return i;
@@ -120,12 +109,10 @@ int OrderedArrayList::indexOf(int data) {
 }
 
 bool OrderedArrayList::isEmpty() {
-    // Implement the logic to check if the list is empty
     return currentSize == 0;
 }
 
 int OrderedArrayList::size() {
-    // Implement the logic to get the size of the list
     return currentSize;
 }
 
