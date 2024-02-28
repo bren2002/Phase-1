@@ -53,12 +53,11 @@ void OrderedArrayList::clear() {
 
 bool OrderedArrayList::contains(int data) {
     // Implement the logic to check if the list contains the specified data
-    // This can be done more efficiently with binary search, but the provided code uses linear search for simplicity
     for (int i = 0; i < currentSize; ++i) {
         if (array[i] == data) {
             return true;
         } else if (array[i] > data) {
-            break; // As the array is sorted, if the current element is greater, data won't be found
+            break; 
         }
     }
     return false;
@@ -109,12 +108,12 @@ bool OrderedArrayList::removeAll(int data) {
 
 int OrderedArrayList::indexOf(int data) {
     // Implement the logic to find the index of the first occurrence of the specified data
-    // This can be done more efficiently with binary search, but the provided code uses linear search for simplicity
+
     for (int i = 0; i < currentSize; ++i) {
         if (array[i] == data) {
             return i;
         } else if (array[i] > data) {
-            break; // As the array is sorted, if the current element is greater, data won't be found
+            break; 
         }
     }
     return -1; // Return -1 if data is not found
