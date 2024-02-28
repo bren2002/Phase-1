@@ -1,7 +1,7 @@
 // OrderedArrayList.cpp
 // Brendan Scharmann, #825291656 
 // 2024 - 02 - 27
-#include "OrderedArrayList.h"
+#include "OrderedArrayList.cpp"
 OrderedArrayList::OrderedArrayList() {
     // Initialize the array and other variables
     // Set initial values
