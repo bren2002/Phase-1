@@ -1,7 +1,7 @@
 // UnorderedArrayList.cpp
 // Brendan Scharmann, #825291656 
 // 2024 - 02 - 27
-#include "UnorderedArrayList.cpp"
+#include "UnorderedArrayList.h"
 UnorderedArrayList::UnorderedArrayList() {
     // Initialize the array and other variables
     // Set initial values
