@@ -6,19 +6,19 @@
 #include <stdexcept>
 
 int OrderedPQ::findMinIndex() {
-    // Find the index of the object with the highest priority that has been in the priority queue the longest
-    // first elements priority and index then iterate through the elements 
-    // updating the index when a higher priority is encountered
+    // Finds the index of the object with the highest priority that has been in the priority queue the longest.
+    // Throws an exception if the queue is empty.
     if (isEmpty()) {
         throw std::invalid_argument("Cannot find minimum index in an empty queue");
     }
 
-  
+    // Initialize variables to store the index and priority of the minimum element
     int minIndex = 0;
     int minPriority = pq->get(0);
-
+    // Iterate through the elements to find the one with the highest priority
     for (int i = 1; i < pq->size(); ++i) {
         int currentPriority = pq->get(i);
+        // Compare the current priority with the minimum priority
         if (currentPriority < minPriority) {
             minPriority = currentPriority;
             minIndex = i;
@@ -39,8 +39,7 @@ OrderedPQ::OrderedPQ(int capacity) {
 }
 
 bool OrderedPQ::insert(int object) {
-    // Inserts a new object into the ordered priority queue based on
-    // the natural order
+    // Inserts a new object into the ordered priority queue based on the natural order
     // Utilizes the OrderedArrayLists 'add' method
     // Returns true if the insertion is successful, otherwise false
     return pq->add(object);
@@ -59,15 +58,15 @@ int OrderedPQ::remove() {
 }
 
 bool OrderedPQ::deleteAll(int obj) {
-    // Implement the logic to delete all instances of the parameter object from the priority queue if found
+    // Deletes all instances of the specified object from the ordered priority queue
+    // Utilizes the 'removeAll' method of the underlying OrderedArrayList
     return pq->removeAll(obj);
 }
 
 int OrderedPQ::peek() {
     // Returns the object of highest priority that has been
     // in the ordered priority queue the longest without removing it
-    // If the queue is empty throws an exception. Uses the 'findMinIndex' method to
-    // determine the index of the object and retrieves it using 'get'
+    // Uses the 'findMinIndex' method to determine the index of the object and collects it using 'get'
     if (isEmpty()) {
         throw std::invalid_argument("Cannot peek from empty queue");
     }
@@ -82,7 +81,7 @@ bool OrderedPQ::contains(int obj) {
 }
 
 int OrderedPQ::size() {
-    // Implement the logic to return the number of objects currently in the ordered PQ
+    // Implement the logic to return the number of objects currently in the ordered priority queue
     return pq->size();
 }
 
@@ -98,7 +97,7 @@ bool OrderedPQ::isEmpty() {
 
 bool OrderedPQ::isFull() {
     // Checks if the ordered priority queue is full
-    // Always returns false.
+    // Always returns false
     return false;
 }
 
