@@ -8,12 +8,15 @@
 int UnorderedPQ::findMinIndex() {
     // Finds the index of the object with the highest priority
     // That has been in the unordered priority queue the longest
+    
     if (isEmpty()) {
         throw std::invalid_argument("Cannot find minimum index in an empty queue");
     }
+   
     // Initialize variables to store the index and priority of the minimum element
     int minIndex = 0;
     int minPriority = pq->get(0);
+   
     // Iterate through the elements to find the one with the highest priority
     for (int i = 1; i < pq->size(); ++i) {
         int currentPriority = pq->get(i);
