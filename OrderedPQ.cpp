@@ -5,9 +5,11 @@
 #include "OrderedPQ.h"
 #include <stdexcept>
 
-// Find the index of the object with the highest priority that has been in the priority queue the longest
-// Throws an exception if the queue is empty
+
 int OrderedPQ::findMinIndex() {
+
+    // Find the index of the object with the highest priority that has been in the priority queue the longest
+    // Throws an exception if the queue is empty
     if (isEmpty()) {
         throw std::invalid_argument("Cannot find minimum index in an empty queue");
     }
