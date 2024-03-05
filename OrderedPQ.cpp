@@ -67,7 +67,7 @@ int OrderedPQ::peek() {
     // Returns the object of highest priority that has been
     // in the ordered priority queue the longest without removing it
     // If the queue is empty throws an exception. Uses the 'findMinIndex' method to
-    // determine the index of the object and retrieves it using 'get'.
+    // determine the index of the object and retrieves it using 'get'
     if (isEmpty()) {
         throw std::invalid_argument("Cannot peek from empty queue");
     }
